@@ -32,6 +32,7 @@
         <div class="nav-item" data-view="overview"><span class="ic"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><span class="txt">Overview</span></div>
         <div class="nav-item" data-view="keys"><span class="ic"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.5 12.5 20 3M14 9l3 3M17.5 5.5l3 3"/></svg></span><span class="txt">User Keys</span></div>
         <div class="nav-item active" data-view="floating"><span class="ic"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></span><span class="txt">Floating Buttons</span></div>
+        <div class="nav-item" data-view="upload"><span class="ic"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg></span><span class="txt">Panel Upload</span></div>
         <div class="nav-item" data-view="notifications"><span class="ic"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span><span class="txt">Notifications</span></div>
         <div class="nav-item" data-view="settings"><span class="ic"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg></span><span class="txt">Settings</span><span class="nav-arrow">▾</span></div>
         <div class="nav-sub" id="settingsSub">
@@ -50,6 +51,7 @@
         </div>
         <span class="mnav-div"></span>
         <div class="mnav-group nav-group-alt">
+        <div class="m-item" data-view="upload"><span class="ic"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg></span>Upload</div>
         <div class="m-item" data-view="notifications"><span class="ic"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span>Notif</div>
         <div class="m-item" data-view="settings"><span class="ic"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg></span>Settings</div>
         </div>
@@ -83,50 +85,29 @@
             </div>
         </div>
 
-        <div class="hero-card">
-            <div>
+<div class="hero-card">
+            <div class="hero-top">
                 <div class="hero-title"><svg class="svg-ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#22d3ee" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg> Floating Panel <span id="fpStatus" style="font-size:12px; padding:3px 12px; border-radius:999px; background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.35); color:#f87171; letter-spacing:1px;">OFF</span></div>
-<div class="hero-sub">Turn ON to show the floating panel in the app with all active buttons. Turn OFF to hide the whole panel.</div>
+                <button type="button" class="fp-toggle" id="fpToggleBtn" onclick="savePanelToggle()">
+                    <span class="fp-knob"></span>
+                    <span class="fp-label">PANEL OFF</span>
+                </button>
+            </div>
+            <div class="hero-sub">ON = panel dikhega app me, OFF = chhupa hua.</div>
                 <div class="panel-preview" id="fbPreview"><span class="prev-chip prev-off">Pick an icon — your preview appears here</span></div>
-            </div>
-<label class="switch">
-                <input type="checkbox" id="fpEnabled" onchange="savePanelToggle()">
-                <span class="slider"></span>
-            </label>
         </div>
 
-        <div class="card collapse-card" id="ghSettingsCard">
-            <h3 class="collapse-head" onclick="toggleGhSettings()">
-                <svg class="svg-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#a5b4ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg> GitHub Upload Settings
-                <span class="gh-save-status" id="ghSaveStatus"></span>
-                <span class="collapse-arrow" id="ghCollapseArrow">▾</span>
-            </h3>
-            <div class="collapse-body">
-                <div class="form-row">
-                    <div>
-                        <label>GitHub Token (PAT)</label>
-                        <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxx" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false">
-                        <div class="field-hint">Personal Access Token with <b>repo</b> scope — make it at <b>github.com/settings/tokens</b>. Saved only in this browser (localStorage), never in Firebase. Close the page after use if you want extra safety.</div>
-                        <label style="margin-top:12px;">GitHub Username (owner)</label>
-                        <input type="text" id="ghOwner" placeholder="yourusername" autocomplete="off">
-                        <label style="margin-top:12px;">Repository Name</label>
-                        <input type="text" id="ghRepo" placeholder="mods-hosting" autocomplete="off">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <button class="btn btn-small" onclick="saveGhSettings()"><svg class="svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Save Settings</button>
-                    <span class="gh-status" id="ghSaveStatus2"></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
+<div class="card">
             <h3><svg class="svg-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#34d399" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg> Add Floating Button</h3>
             <div class="form-row">
-                <div>
-<label>Button Name</label>
-                    <textarea id="fbNameInput" rows="2" placeholder="e.g. AIMBOT"></textarea>
-                    <div class="field-hint">Press <b>Enter</b> for a new line. Type <b>AIMBOT</b>, press <b>Enter</b>, then <b>100%</b> — the button shows two lines in the app.</div>
+                <div class="fb-left">
+                    <div class="fb-preview-box">
+                        <div class="fb-pv-label">Live Preview</div>
+                        <div class="fb-pv-body" id="fbLivePreview">
+                            <div class="fb-pv-badge">✔</div>
+                            <div class="fb-pv-name">AIMBOT</div>
+                        </div>
+                    </div>
                     <div class="icon-pick">
                         <label>Button Icon</label>
                         <div class="emoji-row" id="fbEmojiRow">
@@ -177,31 +158,26 @@
                             <button type="button" class="emoji-opt" data-i="💣" title="Explosive">💣</button>
                             <button type="button" class="emoji-opt" data-i="☢️" title="Radiation">☢️</button>
                         </div>
-                        <div class="field-hint">Icon shown on the floating button in the app. Pick from the palette, type your own, or tap <b>All +</b> for the full list.</div>
+                    </div>
+                    <div>
+                        <label>Button Name</label>
+                        <textarea id="fbNameInput" rows="2" placeholder="e.g. AIMBOT"></textarea>
                     </div>
                 </div>
-<div>
-                    <label>ON URL (media file ZIP)</label>
-                    <input type="text" id="fbOnUrl" placeholder="https://.../on.zip">
-                    <div class="gh-up-row">
-                        <button type="button" class="btn btn-ghost btn-small" onclick="pickGhZip('fbOnUrl')">📤 Upload ZIP to GitHub</button>
-                        <span class="gh-status" id="st-fbOnUrl"></span>
-                        <input type="file" id="file-fbOnUrl" accept=".zip" class="gh-file" onchange="uploadGhZip('fbOnUrl', this)">
+                <div class="fb-right">
+                    <div class="fb-urlfield on">
+                        <label>ON URL <span class="mini-tag">ZIP</span></label>
+                        <input type="text" id="fbOnUrl" placeholder="https://.../on.zip">
                     </div>
-                    <div class="field-hint">Turned ON, this ZIP downloads + extracts. Any number of files/folders — existing ones get replaced.</div>
-                </div>
-                <div>
-                    <label>OFF URL (media file ZIP)</label>
-                    <input type="text" id="fbOffUrl" placeholder="https://.../off.zip">
-                    <div class="gh-up-row">
-                        <button type="button" class="btn btn-ghost btn-small" onclick="pickGhZip('fbOffUrl')">📤 Upload ZIP to GitHub</button>
-                        <span class="gh-status" id="st-fbOffUrl"></span>
-                        <input type="file" id="file-fbOffUrl" accept=".zip" class="gh-file" onchange="uploadGhZip('fbOffUrl', this)">
+                    <div class="fb-urlfield off">
+                        <label>OFF URL <span class="mini-tag">ZIP</span></label>
+                        <input type="text" id="fbOffUrl" placeholder="https://.../off.zip">
                     </div>
-                    <div class="field-hint">Turned OFF, this ZIP still gets pasted (nothing is deleted).</div>
+                    <div class="fb-saveholder">
+                        <button class="btn fb-save-btn" onclick="addFloatingButton()"><svg class="svg-ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg> ADD BUTTON</button>
+                    </div>
                 </div>
             </div>
-            <button class="btn" onclick="addFloatingButton()"><svg class="svg-ic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg> Save Button</button>
         </div>
 
         <div class="card">
@@ -240,8 +216,28 @@
             document.querySelectorAll(".emoji-opt").forEach(function(b) {
                 b.classList.toggle("active", b === btn);
             });
+            updateLivePreview();
         }
         window.pickEmoji = pickEmoji;
+
+        function updateLivePreview() {
+            const pv = document.getElementById("fbLivePreview");
+            if (!pv) return;
+            const name = (document.getElementById("fbNameInput").value || "AIMBOT").trim() || "Name";
+            const icon = (document.getElementById("fbIconInput").value || "✔").trim() || "✔";
+            pv.innerHTML = "";
+            const b = document.createElement("div");
+            b.className = "fb-pv-badge";
+            b.textContent = icon;
+            const n = document.createElement("div");
+            n.className = "fb-pv-name";
+            n.textContent = name.split("\n")[0];
+            pv.appendChild(b);
+            pv.appendChild(n);
+        }
+        window.updateLivePreview = updateLivePreview;
+        document.getElementById("fbNameInput").addEventListener("input", updateLivePreview);
+        document.getElementById("fbIconInput").addEventListener("input", updateLivePreview);
         document.getElementById("fbEmojiRow").addEventListener("click", function(e) {
             const btn = e.target.closest(".emoji-opt");
             if (btn) pickEmoji(btn);
@@ -310,6 +306,10 @@ if (view === "keys") {
                     window.location.href = "keys.html";
                     return;
                 }
+                if (view === "upload") {
+                    window.location.href = "paneluplode.html";
+                    return;
+                }
                 if (view === "notifications") {
                     window.location.href = "notifications.html";
                     return;
@@ -357,8 +357,8 @@ if (item.classList.contains("m-item")) {
             const list = document.getElementById("fbList");
             list.innerHTML = '<div class="empty-state">Loading...</div>';
             get(ref(db, "floatingButtons")).then(function(snap) {
-                if (!snap.exists()) {
-                    document.getElementById("fpEnabled").checked = false;
+if (!snap.exists()) {
+                    applyFpButton(false);
                     document.getElementById("fpStatus").innerText = "OFF";
                     document.getElementById("fpStatus").style.background = "rgba(239,68,68,0.15)";
                     document.getElementById("fpStatus").style.borderColor = "rgba(239,68,68,0.35)";
@@ -371,9 +371,9 @@ if (item.classList.contains("m-item")) {
                     list.innerHTML = '<div class="empty-state"><svg class="svg-ic" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:block; margin:0 auto 10px; opacity:0.7;"><circle cx="12" cy="12" r="9"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg>No buttons yet. Add one above.</div>';
                     return;
                 }
-                const data = snap.val();
+const data = snap.val();
                 const enabled = data.enabled === true;
-                document.getElementById("fpEnabled").checked = enabled;
+                applyFpButton(enabled);
                 document.getElementById("fpStatus").innerText = enabled ? "ON" : "OFF";
                 document.getElementById("fpStatus").style.background = enabled ? "rgba(16,185,129,0.15)" : "rgba(239,68,68,0.15)";
                 document.getElementById("fpStatus").style.borderColor = enabled ? "rgba(16,185,129,0.35)" : "rgba(239,68,68,0.35)";
@@ -473,8 +473,18 @@ const item = document.createElement("div");
         }
         window.setStats = setStats;
 
+function applyFpButton(enabled) {
+            window._fpEnabled = enabled === true;
+            const btn = document.getElementById("fpToggleBtn");
+            const lbl = document.querySelector("#fpToggleBtn .fp-label");
+            if (btn) btn.classList.toggle("on", window._fpEnabled);
+            if (lbl) lbl.textContent = window._fpEnabled ? "PANEL ON" : "PANEL OFF";
+        }
+        window.applyFpButton = applyFpButton;
+
         function savePanelToggle() {
-            const enabled = document.getElementById("fpEnabled").checked;
+            const enabled = !window._fpEnabled;
+            applyFpButton(enabled);
             document.getElementById("fpStatus").innerText = enabled ? "ON" : "OFF";
             document.getElementById("fpStatus").style.background = enabled ? "rgba(16,185,129,0.15)" : "rgba(239,68,68,0.15)";
             document.getElementById("fpStatus").style.borderColor = enabled ? "rgba(16,185,129,0.35)" : "rgba(239,68,68,0.35)";
@@ -507,6 +517,7 @@ function addFloatingButton() {
                     document.getElementById("fbOnUrl").value = "";
                     document.getElementById("fbOffUrl").value = "";
                     document.getElementById("fbIconInput").value = "✔";
+                    updateLivePreview();
                     loadFloatingButtons();
                 })
                 .catch(function() { showToast("Error saving button!", true); });
@@ -532,14 +543,10 @@ function addFloatingButton() {
                 const data = snap.val() || {};
                 document.getElementById("modalBody").innerHTML =
 '<h3>Edit Button</h3>' +
-'<div class="form-row"><div><label>Button Name</label><textarea id="mFbName" rows="2">' + esc(data.name) + '</textarea><div class="field-hint"><b>Enter</b> for a new line — e.g. <b>AIMBOT</b> + Enter + <b>100%</b>.</div></div></div>' +
-                    '<div class="form-row"><div><label>Button Icon</label><input type="text" id="mFbIcon" maxlength="4" value="' + esc(data.icon || "✔") + '"><div class="field-hint">Emoji or any symbol — shown on the button.</div></div></div>' +
-                    '<div class="form-row"><div><label>ON URL (ZIP)</label><input type="text" id="mFbOnUrl" value="' + esc(data.onUrl || data.url || "") + '">' +
-                        '<div class="gh-up-row"><button type="button" class="btn btn-ghost btn-small" onclick="pickGhZip(\'mFbOnUrl\')">📤 Upload ZIP to GitHub</button><span class="gh-status" id="st-mFbOnUrl"></span><input type="file" id="file-mFbOnUrl" accept=".zip" class="gh-file" onchange="uploadGhZip(\'mFbOnUrl\', this)"></div>' +
-                        '<div class="field-hint">Pasted when switched ON.</div></div></div>' +
-                    '<div class="form-row"><div><label>OFF URL (ZIP)</label><input type="text" id="mFbOffUrl" value="' + esc(data.offUrl || "") + '">' +
-                        '<div class="gh-up-row"><button type="button" class="btn btn-ghost btn-small" onclick="pickGhZip(\'mFbOffUrl\')">📤 Upload ZIP to GitHub</button><span class="gh-status" id="st-mFbOffUrl"></span><input type="file" id="file-mFbOffUrl" accept=".zip" class="gh-file" onchange="uploadGhZip(\'mFbOffUrl\', this)"></div>' +
-                        '<div class="field-hint">Still pasted when switched OFF.</div></div></div>' +
+'<div class="form-row"><div><label>Button Name</label><textarea id="mFbName" rows="2">' + esc(data.name) + '</textarea></div></div>' +
+                    '<div class="form-row"><div><label>Button Icon</label><input type="text" id="mFbIcon" maxlength="4" value="' + esc(data.icon || "✔") + '"></div></div>' +
+                    '<div class="form-row"><div><label>ON URL (ZIP)</label><input type="text" id="mFbOnUrl" value="' + esc(data.onUrl || data.url || "") + '"></div></div>' +
+                    '<div class="form-row"><div><label>OFF URL (ZIP)</label><input type="text" id="mFbOffUrl" value="' + esc(data.offUrl || "") + '"></div></div>' +
                     '<div style="display: flex; gap: 10px; justify-content: flex-end;">' +
                     '<button class="btn btn-red btn-small" onclick="closeModal()">CANCEL</button>' +
                     '<button class="btn btn-small" onclick="saveFloatingButtonEdit(\'' + jsStr(key) + '\')">SAVE</button></div>';
@@ -573,7 +580,7 @@ const name = document.getElementById("mFbName").value.trim();
             return s;
         }
 
-        function deleteFloatingButton(key) {
+function deleteFloatingButton(key) {
             const code = randomCode();
             document.getElementById("modalBody").innerHTML =
                 '<h3>Confirm Delete</h3>' +
@@ -640,141 +647,6 @@ const name = document.getElementById("mFbName").value.trim();
             });
         }
 window.moveFloatingButton = moveFloatingButton;
-
-        const GH_MAX_BYTES = 95 * 1024 * 1024;
-
-        function getGhSettings() {
-            try {
-                return JSON.parse(localStorage.getItem("gh_settings") || "{}") || {};
-            } catch (e) {
-                return {};
-            }
-        }
-
-        function applyGhSettings() {
-            const s = getGhSettings();
-            const st = document.getElementById("ghSaveStatus");
-            if (st) st.innerText = (s.token && s.owner && s.repo) ? "✅ Saved: " + s.owner + "/" + s.repo : "";
-            const t = document.getElementById("ghToken");
-            const o = document.getElementById("ghOwner");
-            const r = document.getElementById("ghRepo");
-            if (t) t.value = s.token || "";
-            if (o) o.value = s.owner || "";
-            if (r) r.value = s.repo || "";
-        }
-        window.applyGhSettings = applyGhSettings;
-
-        function toggleGhSettings() {
-            const card = document.getElementById("ghSettingsCard");
-            if (card) card.classList.toggle("open");
-        }
-        window.toggleGhSettings = toggleGhSettings;
-
-        function saveGhSettings() {
-            const token = document.getElementById("ghToken").value.trim();
-            const owner = document.getElementById("ghOwner").value.trim();
-            const repo = document.getElementById("ghRepo").value.trim();
-            if (!token || !owner || !repo) {
-                setGhStatus("ghSaveStatus2", "Token, username and repo are required.", false);
-                return;
-            }
-            localStorage.setItem("gh_settings", JSON.stringify({ token: token, owner: owner, repo: repo }));
-            applyGhSettings();
-            setGhStatus("ghSaveStatus2", "✅ Saved!", true);
-            showToast("GitHub settings saved!");
-        }
-        window.saveGhSettings = saveGhSettings;
-
-        function setGhStatus(spanId, msg, ok) {
-            const el = document.getElementById(spanId);
-            if (!el) return;
-            el.textContent = msg;
-            el.className = "gh-status" + (ok ? " ok" : (ok === null ? "" : " err"));
-        }
-        window.setGhStatus = setGhStatus;
-
-        function pickGhZip(targetId) {
-            const s = getGhSettings();
-            if (!s.token || !s.owner || !s.repo) {
-                showToast("Set GitHub Upload Settings first!", true);
-                toggleGhSettings();
-                return;
-            }
-            const inp = document.getElementById("file-" + targetId);
-            if (!inp) return;
-            inp.value = "";
-            inp.click();
-        }
-        window.pickGhZip = pickGhZip;
-
-        function uploadGhZip(targetId, input) {
-            const spanId = "st-" + targetId;
-            const file = input.files && input.files[0];
-            if (!file) return;
-            const s = getGhSettings();
-            if (!s.token || !s.owner || !s.repo) {
-                setGhStatus(spanId, "GitHub settings missing.", false);
-                return;
-            }
-            if (file.size > GH_MAX_BYTES) {
-                setGhStatus(spanId, "❌ GitHub max 100MB per file. File is " + Math.round(file.size / 1048576) + "MB.", false);
-                return;
-            }
-            setGhStatus(spanId, "Uploading... " + (Math.round(file.size / 1048576 * 10) / 10) + " MB", null);
-            const reader = new FileReader();
-            reader.onload = function() {
-                const dataUrl = String(reader.result || "");
-                const base64 = dataUrl.indexOf(",") >= 0 ? dataUrl.slice(dataUrl.indexOf(",") + 1) : "";
-                if (!base64) {
-                    setGhStatus(spanId, "Failed to read the file.", false);
-                    return;
-                }
-                uploadToGithub(s, file.name, base64, targetId, spanId);
-            };
-            reader.onerror = function() {
-                setGhStatus(spanId, "Failed to read the file.", false);
-            };
-            reader.readAsDataURL(file);
-        }
-        window.uploadGhZip = uploadGhZip;
-
-        function uploadToGithub(s, filename, base64, targetId, spanId) {
-            const path = "mods/" + encodeURIComponent(filename);
-            const url = "https://api.github.com/repos/" + encodeURIComponent(s.owner) + "/" + encodeURIComponent(s.repo) + "/contents/" + path;
-            fetch(url, {
-                method: "PUT",
-                headers: {
-                    "Authorization": "Bearer " + s.token,
-                    "Content-Type": "application/json",
-                    "Accept": "application/vnd.github+json"
-                },
-                body: JSON.stringify({ message: "upload mod: " + filename, content: base64 })
-            }).then(function(res) {
-                return res.json().then(function(data) { return { status: res.status, data: data }; });
-            }).then(function(result) {
-                const st = result.status;
-                if (st >= 200 && st < 300) {
-                    const c = result.data && result.data.content;
-                    const dl = (c && c.download_url) || (result.data && result.data.download_url);
-                    if (dl && targetId) {
-                        const input = document.getElementById(targetId);
-                        if (input) input.value = dl;
-                    }
-                    setGhStatus(spanId, "✅ Uploaded", true);
-                    showToast(filename + " uploaded!");
-                    return;
-                }
-                if (st === 401 || st === 403) setGhStatus(spanId, "❌ Invalid token or no repo access.", false);
-                else if (st === 422) setGhStatus(spanId, "❌ File too large or repo issue (422).", false);
-                else if (st === 429) setGhStatus(spanId, "❌ Rate limit exceeded. Try again later.", false);
-                else setGhStatus(spanId, "❌ Upload failed (" + st + ").", false);
-            }).catch(function() {
-                setGhStatus(spanId, "❌ Upload failed. Check connection.", false);
-            });
-        }
-        window.uploadToGithub = uploadToGithub;
-
-        applyGhSettings();
     </script>
     <script src="admin-ui.js" defer></script>
 </body>

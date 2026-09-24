@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PANEL UPLOAD - ADMIN PANEL</title>
+        <link rel="stylesheet" href="admin-ui.css">
+    <script type="importmap">
+    {
+        "imports": {
+            "firebase/app": "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js",
+            "firebase/analytics": "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js",
+            "firebase/auth": "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js",
+            "firebase/database": "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"
+        }
+    }
+    </script>
+</head>
+<body>
+
+    <div class="bg-decor"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div><div class="grid"></div></div>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="icon"><svg class="svg-ic" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M8.5 11l2.5 2.5L15.5 8.5" stroke="#fde047" stroke-width="2.4"/></svg></div>
+            <div>
+                <div class="name">GANDU PANEL</div>
+                <div class="role">Admin Panel</div>
+            </div>
+        </div>
+
+        <div class="nav-item" data-view="overview"><span class="ic"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><span class="txt">Overview</span></div>
+        <div class="nav-item" data-view="keys"><span class="ic"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.5 12.5 20 3M14 9l3 3M17.5 5.5l3 3"/></svg></span><span class="txt">User Keys</span></div>
+        <div class="nav-item" data-view="floating"><span class="ic"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></span><span class="txt">Floating Buttons</span></div>
+        <div class="nav-item active" data-view="upload"><span class="ic"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg></span><span class="txt">Panel Upload</span></div>
+        <div class="nav-item" data-view="notifications"><span class="ic"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span><span class="txt">Notifications</span></div>
+        <div class="nav-item" data-view="settings"><span class="ic"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg></span><span class="txt">Settings</span><span class="nav-arrow">▾</span></div>
+        <div class="nav-sub" id="settingsSub">
+            <div class="nav-sub-item" onclick="window.location.href='settings.html'"><svg class="svg-ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2M9 10h6M9 14h6M9 18h4"/></svg> Site Settings</div>
+        </div>
+
+        <div class="side-user"><div class="su-av">A</div><div class="su-meta"><div class="su-label">Administrator</div><div class="su-email">admin@panel</div></div></div>
+        <button class="logout" id="logoutBtn">LOGOUT</button>
+    </aside>
+
+    <nav class="mobile-nav" id="mobileNav">
+        <div class="mnav-group">
+        <div class="m-item" data-view="overview"><span class="ic"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>Home</div>
+        <div class="m-item" data-view="keys"><span class="ic"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.5 12.5 20 3M14 9l3 3M17.5 5.5l3 3"/></svg></span>Keys</div>
+        <div class="m-item" data-view="floating"><span class="ic"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></span>Float</div>
+        </div>
+        <span class="mnav-div"></span>
+        <div class="mnav-group nav-group-alt">
+        <div class="m-item active" data-view="upload"><span class="ic"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg></span>Upload</div>
+        <div class="m-item" data-view="notifications"><span class="ic"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span>Notif</div>
+        <div class="m-item" data-view="settings"><span class="ic"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg></span>Settings</div>
+        </div>
+    </nav>
+
+    <div class="main">
+        <div class="topbar">
+            <h1 id="pageTitle"><svg class="svg-ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg> Panel Upload</h1>
+            <div class="topbar-right">
+                <div class="user-chip" id="adminEmail"><span class="uc-av">A</span><span class="uc-name">Admin</span></div>
+                <button class="topbar-exit" onclick="document.getElementById('logoutBtn').click()"><svg class="svg-ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h5M15 16l4-4-4-4M19 12H9"/></svg> EXIT</button>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-top"><span class="stat-ic"><svg class="svg-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg></span><span class="lbl">Files in mods</span></div>
+                <div class="val" id="statFiles">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-top"><span class="stat-ic"><svg class="svg-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg></span><span class="lbl">Total Size</span></div>
+                <div class="val" id="statSize" style="font-size:22px;">0 MB</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-top"><span class="stat-ic"><svg class="svg-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></span><span class="lbl">Repository</span></div>
+                <div class="val" id="statRepo" style="font-size:15px; word-break:break-all;">Not set</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-top"><span class="stat-ic"><svg class="svg-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="lbl">Connection</span></div>
+                <div class="val" id="statConn" style="font-size:16px;">Not saved</div>
+            </div>
+        </div>
+
+        <div class="hero-card">
+            <div>
+                <div class="hero-title"><svg class="svg-ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#22d3ee" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg> Panel Upload <span id="upStatusLbl" style="font-size:12px; padding:3px 12px; border-radius:999px; background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.35); color:#f87171; letter-spacing:1px;">NO REPO</span></div>
+                <div class="hero-sub">Upload your mod ZIP files to the GitHub <b>mods</b> folder. Every upload makes a direct link — copy it and paste it in the Floating Buttons ON / OFF URL.</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 style="display:flex; align-items:center; gap:8px;"><svg class="svg-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#a5b4ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> GitHub Settings</h3>
+            <div id="ghLockRow" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:12px 14px; border:1px dashed rgba(165,180,255,0.35); border-radius:12px;">
+                <span style="font-size:12.5px; color:var(--muted);"><svg class="svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Developer only — locked. Enter the password to see the upload settings.</span>
+                <span id="ghServerBadge" style="font-size:11px; font-weight:800; letter-spacing:0.5px; padding:3px 10px; border-radius:999px; background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.35); color:#f87171;">NOT SET</span>
+                <button class="btn btn-ghost btn-small" onclick="testGhSettings()"><svg class="svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l3.5 2"/></svg> CHECK</button>
+                <span class="gh-status" id="ghServerOuter"></span>
+                <input type="password" id="ghPass" placeholder="Password" style="max-width:140px;" readonly onpointerdown="this.removeAttribute('readonly')" onfocus="this.removeAttribute('readonly')" autocomplete="off" name="ghpassnl" autocapitalize="none" autocorrect="off" spellcheck="false" data-lpignore="true">
+                <button class="btn btn-ghost btn-small" onclick="unlockGh()">UNLOCK</button>
+            </div>
+            <div id="ghSettingBody" style="display:none;">
+            <div class="form-row">
+                <div>
+                    <label>GitHub Token (PAT)</label>
+                    <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxx" readonly onpointerdown="this.removeAttribute('readonly')" onfocus="this.removeAttribute('readonly')" autocomplete="off" name="ghtokenpat" autocapitalize="none" autocorrect="off" spellcheck="false" data-lpignore="true">
+                    <label style="margin-top:12px;">GitHub Username (owner)</label>
+                    <input type="text" id="ghOwner" placeholder="yourusername" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false">
+                    <label style="margin-top:12px;">Repository Name</label>
+                    <input type="text" id="ghRepo" placeholder="mods-hosting" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false">
+                </div>
+            </div>
+            <div class="form-row">
+                <button class="btn btn-small" onclick="saveGhSettings()"><svg class="svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Save Settings</button>
+                <button class="btn btn-ghost btn-small" onclick="testGhSettings()"><svg class="svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l3.5 2"/></svg> Test Connection</button>
+                <button class="btn btn-ghost btn-small" onclick="lockGh()"><svg class="svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> LOCK</button>
+                <span class="gh-status" id="ghSaveStatus"></span>
+            </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3><svg class="svg-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#34d399" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg> Upload Mod ZIP</h3>
+            <div class="form-row">
+                <div>
+                    <label>Display Name (optional)</label>
+<input type="text" id="ghNameInput" maxlength="60" placeholder="e.g. ESP ON — what this ZIP does">
+            </div>
+            </div>
+            <div class="up-drop" id="upDrop" role="button" tabindex="0" onclick="pickZip()">
+                <div class="up-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg></div>
+                <div class="up-drop-title">Tap to choose a ZIP</div>
+                <div class="up-drop-sub">or drag &amp; drop it here &middot; max 100 MB</div>
+                <input type="file" id="zipInput" accept=".zip,application/zip" class="gh-file" onchange="handlePick(this)">
+            </div>
+            <div class="up-chosen" id="upChosen" style="display:none;">
+                <span class="up-thumb"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#a5b4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/><path d="M3 6V3h18v8"/></svg></span>
+                <span class="up-chosen-meta"><b id="upFileName"></b><span id="upFileSize"></span></span>
+                <button type="button" class="btn btn-ghost btn-small" onclick="pickZip()">CHANGE</button>
+                <button type="button" class="btn btn-ghost btn-small up-remove" onclick="clearPick()" title="Remove file">&times;</button>
+            </div>
+            <button class="btn up-btn" id="upBtn" onclick="uploadZip()"><svg class="svg-ic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg> UPLOAD MODS</button>
+            <div class="up-progress" id="upProgressWrap" style="display:none;">
+                <div class="up-progress-bar" id="upProgressBar"></div>
+            </div>
+            <div class="gh-status" id="upStatus" style="margin-top:10px;"></div>
+            <div id="upLinkBox"></div>
+        </div>
+
+        <div class="card">
+            <h3 style="display:flex; align-items:center; gap:8px;"><svg class="svg-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg> Files in mods/
+                <button class="btn btn-ghost btn-small" style="margin-left:auto;" onclick="listFiles()"><svg class="svg-ic" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36M21 3v6h-6"/></svg> REFRESH</button>
+            </h3>
+            <div id="fileList"><div class="empty-state">Loading files...</div></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modalBody"></div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <a href="developer.html" class="dev-fab" title="Developer Support"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+
+    <script type="module">
+        import { auth, db } from "./firebase-config.js";
+        import { onAuthStateChanged, signOut } from "firebase/auth";
+        import { ref, get, set } from "firebase/database";
+
+        window.auth = auth;
+        window.db = db;
+        window.signOut = signOut;
+        window.ref = ref;
+        window.get = get;
+        window.set = set;
+
+        const GH_MAX_BYTES = 100 * 1024 * 1024;
+        let lastUploadUrl = "";
+
+        function showToast(msg, isError) {
+            const toast = document.getElementById("toast");
+            toast.innerText = msg;
+            toast.className = "toast" + (isError ? " error" : "");
+            toast.style.display = "flex";
+            toast.style.animation = "none";
+            void toast.offsetWidth;
+            toast.style.animation = "";
+            setTimeout(function() { toast.style.display = "none"; }, 2600);
+        }
+        window.showToast = showToast;
+
+        function closeModal() {
+            document.getElementById("modalOverlay").classList.remove("show");
+        }
+        window.closeModal = closeModal;
+
+        function applyGhLockState() {
+            const unlocked = localStorage.getItem("gh_dev_unlocked") === "1";
+            const body = document.getElementById("ghSettingBody");
+            const row = document.getElementById("ghLockRow");
+            if (body) body.style.display = unlocked ? "" : "none";
+            if (row) row.style.display = unlocked ? "none" : "flex";
+        }
+        window.applyGhLockState = applyGhLockState;
+
+        function unlockGh() {
+            const pass = (document.getElementById("ghPass").value || "").trim();
+            if (pass === "0007") {
+                localStorage.setItem("gh_dev_unlocked", "1");
+                applyGhLockState();
+                showToast("Unlocked!");
+            } else {
+                showToast("Wrong password!", true);
+            }
+        }
+        window.unlockGh = unlockGh;
+
+        function lockGh() {
+            localStorage.removeItem("gh_dev_unlocked");
+            const p = document.getElementById("ghPass");
+            if (p) p.value = "";
+            applyGhLockState();
+            showToast("Locked.");
+        }
+        window.lockGh = lockGh;
+        document.getElementById("ghPass").addEventListener("keydown", function(e) {
+            if (e.key === "Enter") unlockGh();
+        });
+
+        function getGhSettings() {
+            try { return JSON.parse(localStorage.getItem("gh_settings") || "{}") || {}; }
+            catch (e) { return {}; }
+        }
+
+        function setGhStatus(spanId, msg, ok) {
+            const el = document.getElementById(spanId);
+            if (!el) return;
+            el.textContent = msg;
+            el.className = "gh-status" + (ok ? " ok" : (ok === null ? "" : " err"));
+        }
+        window.setGhStatus = setGhStatus;
+
+        function updateServerBadge() {
+            const b = document.getElementById("ghServerBadge");
+            if (!b) return;
+            const s = getGhSettings();
+            const on = !!(s.token && s.owner && s.repo);
+            b.textContent = on ? "SERVER READY" : "NOT SET";
+            b.style.background = on ? "rgba(16,185,129,0.15)" : "rgba(239,68,68,0.15)";
+            b.style.borderColor = on ? "rgba(16,185,129,0.35)" : "rgba(239,68,68,0.35)";
+            b.style.color = on ? "#10b981" : "#f87171";
+        }
+        window.updateServerBadge = updateServerBadge;
+
+        function applyGhSettings() {
+            const s = getGhSettings();
+            applyGhLockState();
+            updateServerBadge();
+            const t = document.getElementById("ghToken");
+            const o = document.getElementById("ghOwner");
+            const r = document.getElementById("ghRepo");
+            if (t) t.value = s.token || "";
+            if (o) o.value = s.owner || "";
+            if (r) r.value = s.repo || "";
+            document.getElementById("statRepo").innerText = (s.owner && s.repo) ? s.owner + "/" + s.repo : "Not set";
+            const conn = document.getElementById("statConn");
+            const lbl = document.getElementById("upStatusLbl");
+            if (s.token && s.owner && s.repo) {
+                conn.innerText = "Saved";
+                conn.style.background = "linear-gradient(135deg,#34d399,#10b981)";
+                conn.style.webkitBackgroundClip = "text";
+                conn.style.webkitTextFillColor = "transparent";
+                if (lbl) {
+                    lbl.innerText = "READY";
+                    lbl.style.background = "rgba(16,185,129,0.15)";
+                    lbl.style.borderColor = "rgba(16,185,129,0.35)";
+                    lbl.style.color = "#10b981";
+                }
+            } else {
+                conn.innerText = "Not saved";
+                conn.style.background = "";
+                conn.style.webkitBackgroundClip = "";
+                conn.style.webkitTextFillColor = "";
+                if (lbl) {
+                    lbl.innerText = "NO REPO";
+                    lbl.style.background = "rgba(239,68,68,0.15)";
+                    lbl.style.borderColor = "rgba(239,68,68,0.35)";
+                    lbl.style.color = "#f87171";
+                }
+            }
+        }
+        window.applyGhSettings = applyGhSettings;
+
+        function saveGhSettings() {
+            const token = document.getElementById("ghToken").value.trim();
+            const owner = document.getElementById("ghOwner").value.trim();
+            const repo = document.getElementById("ghRepo").value.trim().replace(/\s+/g, "-");
+            if (!token || !owner || !repo) {
+                setGhStatus("ghSaveStatus", "Token, username and repo are required.", false);
+                return;
+            }
+            document.getElementById("ghRepo").value = repo;
+            localStorage.setItem("gh_settings", JSON.stringify({ token: token, owner: owner, repo: repo }));
+            const saveData = { token: token, owner: owner, repo: repo, updatedAt: Date.now() };
+            set(ref(db, "panelSettings/github"), saveData).then(function() {
+                setGhStatus("ghSaveStatus", "Saved & synced online (Firebase). Any device gets it.", true);
+                showToast("Saved + synced online!");
+            }).catch(function() {
+                setGhStatus("ghSaveStatus", "Saved locally, but online sync failed. Publish the rules with panelSettings first.", false);
+                showToast("Saved locally (sync failed)!", true);
+            });
+            applyGhSettings();
+        }
+        window.saveGhSettings = saveGhSettings;
+
+        function loadRemoteSettings() {
+            get(ref(db, "panelSettings/github")).then(function(snap) {
+                if (!snap.exists()) return;
+                const s = snap.val() || {};
+                if (s.token && s.owner && s.repo) {
+                    localStorage.setItem("gh_settings", JSON.stringify({ token: s.token, owner: s.owner, repo: s.repo }));
+                    applyGhSettings();
+                    listFiles();
+                }
+            }).catch(function() {});
+        }
+        window.loadRemoteSettings = loadRemoteSettings;
+
+        function testGhSettings() {
+            const s = getGhSettings();
+            if (!s.token || !s.owner || !s.repo) {
+                setGhStatus("ghSaveStatus", "Fill and save the settings first.", false);
+                return;
+            }
+            setGhStatus("ghSaveStatus", "Testing...", null);
+            const base = "https://api.github.com/repos/" + encodeURIComponent(s.owner) + "/" + encodeURIComponent(s.repo);
+            const testPath = "mods/__gh_upload_test.txt";
+            const headers = {
+                "Authorization": "Bearer " + s.token,
+                "Accept": "application/vnd.github+json"
+            };
+            const done = function(msg, ok) {
+                setGhStatus("ghSaveStatus", msg, ok);
+                setGhStatus("ghServerOuter", msg, ok);
+                if (ok) updateServerBadge();
+            };
+            fetch(base, { headers: headers }).then(function(res) {
+                if (res.status === 401) { done("Token invalid (401).", false); return null; }
+                if (res.status === 404) { done("Repo not found or token has no access (404). Check the Owner / Repo name.", false); return null; }
+                if (res.status === 403) { done("Repo access forbidden (403).", false); return null; }
+                if (res.status !== 200) { done("Repo check failed (" + res.status + ").", false); return null; }
+                return res.json();
+            }).then(function(repo) {
+                if (!repo) return;
+                if (repo.permissions && (repo.permissions.push || repo.permissions.admin)) {
+                    done("Token valid. Repo found. Upload permission OK.", true);
+                    return;
+                }
+                const b64 = btoa("ok");
+                const putHdrs = Object.assign({ "Content-Type": "application/json" }, headers);
+                fetch(base + "/contents/" + encodeURIComponent(testPath), {
+                    method: "PUT",
+                    headers: putHdrs,
+                    body: JSON.stringify({ message: "gh upload test", content: b64 })
+                }).then(function(putRes) {
+                    if (putRes.status >= 200 && putRes.status < 300) {
+                        fetch(base + "/contents/" + encodeURIComponent(testPath), {
+                            method: "DELETE",
+                            headers: putHdrs,
+                            body: JSON.stringify({ message: "remove gh upload test" })
+                        }).then(function() {
+                            done("Token valid. Repo found. Upload permission OK.", true);
+                        }).catch(function() {
+                            done("Upload OK (test file cleanup failed — delete it manually).", true);
+                        });
+                        return;
+                    }
+                    if (putRes.status === 404) done("Token has NO repo access (write test returned 404).", false);
+                    else if (putRes.status === 403) done("No upload permission (write test 403).", false);
+                    else if (putRes.status === 422) done("Write test failed (422).", false);
+                    else done("Write test failed (" + putRes.status + ").", false);
+                }).catch(function() {
+                    done("Write test failed. Check the connection.", false);
+                });
+            }).catch(function() {
+                done("Test failed. Check the connection.", false);
+            });
+        }
+        window.testGhSettings = testGhSettings;
+
+        function pickZip() {
+            const inp = document.getElementById("zipInput");
+            if (!inp) return;
+            inp.value = "";
+            inp.click();
+        }
+        window.pickZip = pickZip;
+
+        function handlePick(input) {
+            const file = input.files && input.files[0];
+            if (!file) return;
+            setFileChosen(file);
+        }
+        window.handlePick = handlePick;
+
+        function setFileChosen(file) {
+            window._upFile = file;
+            const chosen = document.getElementById("upChosen");
+            const drop = document.getElementById("upDrop");
+            const st = document.getElementById("upStatus");
+            if (chosen) { chosen.style.display = "flex"; }
+            if (drop) { drop.style.display = "none"; }
+            document.getElementById("upFileName").textContent = file.name;
+            document.getElementById("upFileSize").textContent = fmtBytes(file.size);
+            document.getElementById("upLinkBox").innerHTML = "";
+            if (st) {
+                if (file.size > GH_MAX_BYTES) {
+                    st.className = "gh-status err";
+                    st.textContent = file.name + " is " + fmtBytes(file.size) + " — GitHub max 100 MB. Pick a smaller file or upload it on the GitHub website.";
+                } else {
+                    st.className = "gh-status ok";
+                    st.textContent = file.name + " ready to upload.";
+                }
+            }
+        }
+        window.setFileChosen = setFileChosen;
+
+        function clearPick() {
+            const inp = document.getElementById("zipInput");
+            if (inp) inp.value = "";
+            window._upFile = null;
+            const chosen = document.getElementById("upChosen");
+            const drop = document.getElementById("upDrop");
+            const st = document.getElementById("upStatus");
+            if (chosen) chosen.style.display = "none";
+            if (drop) drop.style.display = "";
+            document.getElementById("upLinkBox").innerHTML = "";
+            if (st) { st.className = "gh-status"; st.textContent = ""; }
+            const nameInput = document.getElementById("ghNameInput");
+            if (nameInput) nameInput.value = "";
+        }
+        window.clearPick = clearPick;
+
+        (function initUpDrop() {
+            const drop = document.getElementById("upDrop");
+            if (!drop) return;
+            ["dragenter", "dragover"].forEach(function(ev) {
+                drop.addEventListener(ev, function(e) { e.preventDefault(); drop.classList.add("hover"); });
+            });
+            ["dragleave", "drop"].forEach(function(ev) {
+                drop.addEventListener(ev, function(e) { e.preventDefault(); drop.classList.remove("hover"); });
+            });
+            drop.addEventListener("drop", function(e) {
+                const f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+                if (!f) return;
+                const inp = document.getElementById("zipInput");
+                try {
+                    const dt = new DataTransfer();
+                    dt.items.add(f);
+                    if (inp) inp.files = dt.files;
+                } catch (err) {}
+                setFileChosen(f);
+            });
+            drop.addEventListener("keydown", function(e) {
+                if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pickZip(); }
+            });
+        })();
+        window.initUpDrop = (function(){})();
+
+        function setProgress(pct) {
+            const wrap = document.getElementById("upProgressWrap");
+            const bar = document.getElementById("upProgressBar");
+            if (wrap) wrap.style.display = "";
+            if (bar) bar.style.width = pct + "%";
+        }
+        window.setProgress = setProgress;
+
+        function hideProgress() {
+            const wrap = document.getElementById("upProgressWrap");
+            const bar = document.getElementById("upProgressBar");
+            if (wrap) wrap.style.display = "none";
+            if (bar) bar.style.width = "0%";
+        }
+        window.hideProgress = hideProgress;
+
+        function uploadZip() {
+            const input = document.getElementById("zipInput");
+            const file = (input && input.files && input.files[0]) || window._upFile;
+            if (!file) { setGhStatus("upStatus", "Choose a ZIP file first.", false); return; }
+            if (file.size > GH_MAX_BYTES) {
+                setGhStatus("upStatus", "File is too big for GitHub (max 100 MB).", false);
+                return;
+            }
+            const s = getGhSettings();
+            if (!s.token || !s.owner || !s.repo) {
+                setGhStatus("upStatus", "Save the GitHub settings first.", false);
+                return;
+            }
+            setGhStatus("upStatus", "Reading " + file.name + "...", null);
+            hideProgress();
+            const reader = new FileReader();
+            reader.onload = function() {
+                const dataUrl = String(reader.result || "");
+                const base64 = dataUrl.indexOf(",") >= 0 ? dataUrl.slice(dataUrl.indexOf(",") + 1) : "";
+                if (!base64) { setGhStatus("upStatus", "Failed to read the file.", false); return; }
+                doUpload(s, file.name, base64);
+            };
+            reader.onerror = function() {
+                setGhStatus("upStatus", "Failed to read the file.", false);
+            };
+            reader.readAsDataURL(file);
+        }
+        window.uploadZip = uploadZip;
+
+        function doUpload(s, filename, base64) {
+            const path = "mods/" + encodeURIComponent(filename);
+            const url = "https://api.github.com/repos/" + encodeURIComponent(s.owner) + "/" + encodeURIComponent(s.repo) + "/contents/" + path;
+            setGhStatus("upStatus", "Uploading " + filename + " — 0%", null);
+            setProgress(0);
+            const xhr = new XMLHttpRequest();
+            xhr.open("PUT", url);
+            xhr.timeout = 180000;
+            xhr.setRequestHeader("Authorization", "Bearer " + s.token);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.setRequestHeader("Accept", "application/vnd.github+json");
+            xhr.upload.onprogress = function(e) {
+                if (e.lengthComputable) {
+                    const pct = Math.round((e.loaded / e.total) * 100);
+                    setProgress(pct);
+                    setGhStatus("upStatus", "Uploading " + filename + " — " + pct + "%. Keep waiting.", null);
+                }
+            };
+            xhr.onload = function() {
+                let data = null;
+                let raw = xhr.responseText || "";
+                try { data = JSON.parse(raw || "{}"); } catch (err) {}
+                const st = xhr.status;
+                if (st >= 200 && st < 300) {
+                    const c = data && data.content;
+                    const dl = (c && c.download_url) || (data && data.download_url) || "";
+                    hideProgress();
+                    lastUploadUrl = dl;
+                    showSuccessBox(dl, filename);
+                    listFiles();
+                    return;
+                }
+                hideProgress();
+                const ghMsg = data && data.message ? String(data.message) : "";
+                let reason = "Upload failed (" + st + ").";
+                if (st === 401 || st === 403) reason = "Invalid token or no repo access (" + st + ").";
+                else if (st === 413) reason = "File too large for the GitHub API (" + st + "). Upload it on the GitHub website into mods/, then REFRESH here.";
+                else if (st === 422) reason = "File too large or repo issue (422). Try the GitHub website for big files.";
+                else if (st === 429) reason = "Rate limit exceeded. Try again later.";
+                else if (st === 404) reason = "Repo not found or token has no access. Check the Owner / Repo name.";
+                setGhStatus("upStatus", reason + (ghMsg ? " (" + ghMsg + ")" : "") + " → " + s.owner + "/" + s.repo + "/mods/" + filename, false);
+            };
+            xhr.onerror = function() {
+                hideProgress();
+                const st = xhr.status;
+                const txt = xhr.statusText || "";
+                const spr = (rawToSnippet(xhr.responseText) || "").slice(0, 200);
+                let msg = "Upload failed. Status " + (st || "0") + (txt ? " " + txt : "") + ".";
+                if (!st) msg += " This is a network/CORS problem, not a size problem — check your internet, reopen the panel, and retry. For very big ZIPs, upload on the GitHub website into mods/ and REFRESH here.";
+                else msg += (spr ? " Server said: " + spr : "") + " Retry, or upload on the GitHub website.";
+                setGhStatus("upStatus", msg, false);
+                showToast("Upload failed (" + (st || "network") + ")!", true);
+            };
+            xhr.ontimeout = function() {
+                hideProgress();
+                setGhStatus("upStatus", "Upload timed out. Retry, or upload this ZIP on the GitHub website into mods/.", false);
+                showToast("Upload timed out!", true);
+            };
+            xhr.send(JSON.stringify({ message: "upload mod: " + filename, content: base64 }));
+        }
+        window.doUpload = doUpload;
+
+        function rawToSnippet(s) {
+            if (!s) return "";
+            try {
+                const d = JSON.parse(s);
+                return (d && d.message) ? String(d.message) : "";
+            } catch (e) { return s; }
+        }
+
+        function showSuccessBox(link, filename) {
+            if (!link) {
+                setGhStatus("upStatus", "Uploaded, but could not get the link. Check the file in the repo.", true);
+                return;
+            }
+            const nameInput = document.getElementById("ghNameInput");
+            const note = nameInput ? nameInput.value.trim() : "";
+            if (note) {
+                setNameFor(filename, note);
+                if (nameInput) nameInput.value = "";
+            }
+            setGhStatus("upStatus", "Uploaded! Link is ready:", true);
+            document.getElementById("upLinkBox").innerHTML =
+                '<div class="url-box" style="margin-top:8px;">' + esc(link) + '</div>' +
+                '<div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">' +
+                '<button class="btn btn-small" onclick="copyUploadLink()"><svg class="svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> COPY LINK</button>' +
+                '<button class="btn btn-ghost btn-small" onclick="window.open(\'' + escapeJs(link) + '\',\'_blank\')"><svg class="svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg> OPEN</button>' +
+                '</div>';
+            showToast(filename + " uploaded!");
+        }
+        window.showSuccessBox = showSuccessBox;
+
+        function copyUploadLink() {
+            if (!lastUploadUrl) return;
+            copyText(lastUploadUrl, "Link copied!");
+        }
+        window.copyUploadLink = copyUploadLink;
+
+        function copyText(text, okMsg) {
+            function fallback() {
+                const ta = document.createElement("textarea");
+                ta.value = text;
+                ta.style.position = "fixed";
+                ta.style.opacity = "0";
+                document.body.appendChild(ta);
+                ta.select();
+                try { document.execCommand("copy"); showToast(okMsg || "Copied!"); }
+                catch (e) { showToast("Copy failed!", true); }
+                document.body.removeChild(ta);
+            }
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(function() {
+                    showToast(okMsg || "Copied!");
+                }).catch(fallback);
+            } else {
+                fallback();
+            }
+        }
+
+        function fmtBytes(n) {
+            if (!n && n !== 0) return "";
+            if (n < 1024) return n + " B";
+            if (n < 1048576) return (n / 1024).toFixed(1) + " KB";
+            return (n / 1048576).toFixed(1) + " MB";
+        }
+        window.fmtBytes = fmtBytes;
+
+        function getNames() {
+            try { return JSON.parse(localStorage.getItem("gh_display_names") || "{}") || {}; }
+            catch (e) { return {}; }
+        }
+
+        function setNameFor(file, name) {
+            const m = getNames();
+            if (name) m[file] = name; else delete m[file];
+            localStorage.setItem("gh_display_names", JSON.stringify(m));
+        }
+
+        function esc(s) {
+            return String(s || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/'/g, "&#39;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+        window.esc = esc;
+
+        function escapeJs(s) {
+            return String(s || "").replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+        }
+
+        function listFiles() {
+            const list = document.getElementById("fileList");
+            list.innerHTML = '<div class="empty-state">Loading files...</div>';
+            const s = getGhSettings();
+            if (!s.token || !s.owner || !s.repo) {
+                list.innerHTML = '<div class="empty-state">Save the GitHub settings first to see your files.</div>';
+                return;
+            }
+            const url = "https://api.github.com/repos/" + encodeURIComponent(s.owner) + "/" + encodeURIComponent(s.repo) + "/contents/" + encodeURIComponent("mods");
+            fetch(url, { headers: { "Authorization": "Bearer " + s.token, "Accept": "application/vnd.github+json" } })
+                .then(function(res) {
+                    if (res.status === 404) { list.innerHTML = '<div class="empty-state">Empty folder. Upload your first ZIP.</div>'; return null; }
+                    if (res.status === 401 || res.status === 403) { list.innerHTML = '<div class="empty-state">No access to the repo. Check the token / repo name.</div>'; return null; }
+                    return res.json();
+                })
+                .then(function(data) {
+                    if (!data || !Array.isArray(data)) return;
+                    if (data.length === 0) {
+                        list.innerHTML = '<div class="empty-state">Empty folder. Upload your first ZIP.</div>';
+                        return;
+                    }
+                    const files = data.filter(function(f) { return f.type === "file" && /\.zip$/i.test(f.name); });
+                    renderFiles(files, list);
+                })
+                .catch(function() {
+                    list.innerHTML = '<div class="empty-state">Error loading files. Check the connection.</div>';
+                });
+        }
+        window.listFiles = listFiles;
+
+function renderFiles(files, list) {
+            list.innerHTML = "";
+            if (!files.length) {
+                list.innerHTML = '<div class="empty-state">No ZIP files in mods/. Upload your first ZIP.</div>';
+            }
+            const names = getNames();
+            let totalSize = 0;
+            files.forEach(function(f, i) {
+                totalSize += (f.size || 0);
+            });
+            document.getElementById("statFiles").innerText = files.length;
+            document.getElementById("statSize").innerText = fmtBytes(totalSize);
+            files.forEach(function(f, i) {
+                const note = (names && names[f.name]) ? String(names[f.name]) : "";
+                const item = document.createElement("div");
+                item.className = "list-item";
+                item.style.animationDelay = (i * 0.05) + "s";
+                item.innerHTML =
+                    '<div class="info">' +
+                    '<div class="thumb"><span style="font-size:20px;">🗜️</span></div>' +
+                    '<div style="min-width:0; flex:1;">' +
+                    '<div class="fb-name-row" style="gap:8px; cursor:pointer;" title="Tap to set display name" onclick="editFileNote(\'' + escapeJs(f.name) + '\')">' +
+                    (note ? '<span style="display:inline-block; font-size:11px; font-weight:800; padding:2px 9px; border-radius:999px; background:rgba(34,211,238,0.12); border:1px solid rgba(34,211,238,0.35); color:#22d3ee; letter-spacing:0.5px;">' + esc(note) + ' ✎</span>' : '') +
+                    '<span class="t1" style="font-size:14px; word-break:break-all;">' + esc(f.name) + '</span></div>' +
+                    '<div class="url-box" style="word-break:break-all;">' + esc(f.download_url || "") + '</div>' +
+                    '<div style="font-size:11.5px; color:var(--muted); margin-top:4px;">' + fmtBytes(f.size) + ' &nbsp;•&nbsp; updated ' + (f.updated_at ? new Date(f.updated_at).toLocaleDateString() : "?") + '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="actions">' +
+                    '<button class="btn btn-small" onclick="copyFileLink(\'' + escapeJs(f.download_url || "") + '\')"><svg class="svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> COPY</button>' +
+                    '<button class="btn btn-small" title="Set display name" onclick="editFileNote(\'' + escapeJs(f.name) + '\')"><svg class="svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg> EDIT</button>' +
+                    '<button class="btn btn-ghost btn-small" onclick="window.open(\'' + escapeJs(f.download_url || "") + '\',\'_blank\')"><svg class="svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg> OPEN</button>' +
+                    '<button class="btn btn-red btn-small" onclick="askDeleteFile(\'' + escapeJs(f.name) + '\')"><svg class="svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg> DELETE</button>' +
+                    '</div>';
+                list.appendChild(item);
+            });
+        }
+        window.renderFiles = renderFiles;
+
+        function editFileNote(name) {
+            const cur = getNames()[name] || "";
+            document.getElementById("modalBody").innerHTML =
+                '<h3>Set Display Name</h3>' +
+                '<label>Display Name</label>' +
+                '<input type="text" id="fileNoteInput" maxlength="60" value="' + esc(cur) + '" placeholder="e.g. ESP ON">' +
+                '<div style="display:flex; gap:10px; justify-content:flex-end; margin-top:14px;">' +
+                '<button class="btn btn-small" onclick="closeModal()">CANCEL</button>' +
+                (cur ? '<button class="btn btn-ghost btn-small" onclick="clearFileNote(\'' + escapeJs(name) + '\')">REMOVE</button>' : '') +
+                '<button class="btn btn-small" onclick="saveFileNote(\'' + escapeJs(name) + '\')">SAVE</button>' +
+                '</div>';
+            document.getElementById("modalOverlay").classList.add("show");
+            setTimeout(function() {
+                const inp = document.getElementById("fileNoteInput");
+                if (inp) inp.focus();
+            }, 100);
+        }
+        window.editFileNote = editFileNote;
+
+        function saveFileNote(name) {
+            const v = document.getElementById("fileNoteInput").value.trim();
+            setNameFor(name, v);
+            closeModal();
+            listFiles();
+            showToast(v ? "Name saved!" : "Name removed.");
+        }
+        window.saveFileNote = saveFileNote;
+
+        function clearFileNote(name) {
+            setNameFor(name, "");
+            closeModal();
+            listFiles();
+            showToast("Name removed.");
+        }
+        window.clearFileNote = clearFileNote;
+
+        function copyFileLink(link) {
+            if (!link) { showToast("No link!", true); return; }
+            copyText(link, "Link copied!");
+        }
+        window.copyFileLink = copyFileLink;
+
+        function askDeleteFile(name) {
+            const s = getGhSettings();
+            if (!s.token || !s.owner || !s.repo) { showToast("GitHub settings missing!", true); return; }
+            document.getElementById("modalBody").innerHTML =
+                '<h3>Delete File</h3>' +
+                '<div class="field-hint" style="margin:10px 0 16px;">Delete <b>' + esc(name) + '</b> from the <b>mods</b> folder on GitHub?</div>' +
+                '<div style="display:flex; gap:10px; justify-content:flex-end;">' +
+                '<button class="btn btn-small" onclick="closeModal()">CANCEL</button>' +
+                '<button class="btn btn-red btn-small" onclick="deleteFileConfirm(\'' + escapeJs(name) + '\')">DELETE</button>' +
+                '</div>';
+            document.getElementById("modalOverlay").classList.add("show");
+        }
+        window.askDeleteFile = askDeleteFile;
+
+        function deleteFileConfirm(name) {
+            closeModal();
+            const s = getGhSettings();
+            if (!s.token || !s.owner || !s.repo) { showToast("GitHub settings missing!", true); return; }
+            const path = "mods/" + encodeURIComponent(name);
+            const base = "https://api.github.com/repos/" + encodeURIComponent(s.owner) + "/" + encodeURIComponent(s.repo) + "/contents/" + path;
+            const headers = {
+                "Authorization": "Bearer " + s.token,
+                "Accept": "application/vnd.github+json"
+            };
+            showToast("Deleting " + name + "...", false);
+            fetch(base, { headers: headers }).then(function(res) {
+                if (res.status === 404) { showToast("File not found on GitHub.", true); listFiles(); return null; }
+                return res.json();
+            }).then(function(data) {
+                if (!data || !data.sha) { showToast("Delete failed!", true); listFiles(); return; }
+                return fetch(base, {
+                    method: "DELETE",
+                    headers: Object.assign({ "Content-Type": "application/json" }, headers),
+                    body: JSON.stringify({ message: "delete mod: " + name, sha: data.sha })
+                }).then(function(delRes) {
+                    if (delRes.status >= 200 && delRes.status < 300) {
+                        setNameFor(name, "");
+                        showToast(name + " deleted!");
+                        listFiles();
+                    } else {
+                        showToast("Delete failed (" + delRes.status + ")!", true);
+                        listFiles();
+                    }
+                });
+            }).catch(function() {
+                showToast("Delete failed. Check the connection.", true);
+                listFiles();
+            });
+        }
+        window.deleteFileConfirm = deleteFileConfirm;
+
+        function applyAdminChip() {
+            const el = document.querySelector("#adminEmail .uc-name");
+            const isMobile = window.matchMedia("(max-width: 900px)").matches || window.matchMedia("(pointer: coarse)").matches;
+            if (el) el.innerText = isMobile ? "Admin" : (window.adminEmailAddr || "");
+        }
+        window.applyAdminChip = applyAdminChip;
+        window.addEventListener("resize", applyAdminChip);
+
+        document.querySelectorAll(".nav-item, .m-item").forEach(function(item) {
+            item.addEventListener("click", function() {
+                var view = item.dataset.view;
+                if (view === "logout") {
+                    document.getElementById("logoutBtn").click();
+                    return;
+                }
+                if (view === "upload") return;
+                if (view === "keys") {
+                    window.location.href = "keys.html";
+                    return;
+                }
+                if (view === "floating") {
+                    window.location.href = "floating.html";
+                    return;
+                }
+                if (view === "notifications") {
+                    window.location.href = "notifications.html";
+                    return;
+                }
+                if (view === "settings") {
+                    if (item.classList.contains("m-item")) {
+                        window.location.href = "settings.html";
+                        return;
+                    }
+                    item.classList.toggle("open");
+                    return;
+                }
+                window.location.href = "dashboard.html?view=" + view;
+            });
+        });
+
+        onAuthStateChanged(auth, function(user) {
+            if (!user) {
+                window.location.href = "index.html";
+                return;
+            }
+            const loginTime = parseInt(localStorage.getItem("adminLoginTime") || "0", 10);
+            if (!loginTime) {
+                localStorage.setItem("adminLoginTime", String(Date.now()));
+            } else if (Date.now() - loginTime > 24 * 60 * 60 * 1000) {
+                signOut(auth).then(function() {
+                    sessionStorage.removeItem("adminLoggedIn");
+                    localStorage.removeItem("adminLoginTime");
+                    window.location.href = "index.html";
+                });
+                return;
+            }
+            window.adminEmailAddr = user.email;
+            applyAdminChip();
+            applyGhSettings();
+            listFiles();
+            loadRemoteSettings();
+        });
+
+        document.getElementById("logoutBtn").addEventListener("click", function() {
+            signOut(auth).then(function() {
+                sessionStorage.removeItem("adminLoggedIn");
+                window.location.href = "index.html";
+            });
+        });
+    </script>
+    <script src="admin-ui.js" defer></script>
+</body>
+</html>

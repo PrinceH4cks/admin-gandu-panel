@@ -6,6 +6,10 @@
       ".read": true,
       ".write": "auth.uid === 'ExFZHxlDDDOmtNIwTUWrLpZLyDx1'"
     },
+    "panelSettings": {
+      ".read": "auth.uid === 'ExFZHxlDDDOmtNIwTUWrLpZLyDx1'",
+      ".write": "auth.uid === 'ExFZHxlDDDOmtNIwTUWrLpZLyDx1'"
+    },
     "categories": {
       ".read": true,
       ".write": "auth.uid === 'ExFZHxlDDDOmtNIwTUWrLpZLyDx1'"
