@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN LOGIN</title>
+        <link rel="stylesheet" href="admin-ui.css">
+    <script type="importmap">
+    {
+        "imports": {
+            "firebase/app": "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js",
+            "firebase/analytics": "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js",
+            "firebase/auth": "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js",
+            "firebase/database": "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"
+        }
+    }
+    </script>
+</head>
+<body class="login-body">
+    <div class="bg-decor"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div><div class="grid"></div></div>
+
+    <div class="login-card">
+        <div class="logo"><svg class="svg-ic" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M8.5 11l2.5 2.5L15.5 8.5" stroke="#fde047" stroke-width="2.6"/></svg></div>
+        <h1>Admin Panel</h1>
+        <div class="sub">PRINCE HACKS • Secure Admin Access</div>
+
+        <div class="error-msg" id="errorMsg"><svg class="svg-ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17.5v.5"/></svg> Invalid email or password!</div>
+
+        <form id="loginForm">
+            <div class="field">
+                <label>Email</label>
+                <div class="input-wrap">
+                    <span class="input-ic"><svg class="svg-ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#818cf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+                    <input type="email" id="emailInput" placeholder="admin@example.com" autocomplete="email">
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Password</label>
+                <div class="input-wrap">
+                    <span class="input-ic"><svg class="svg-ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.5 12.5 20 3M14 9l3 3M17.5 5.5l3 3"/></svg></span>
+<input type="text" id="passwordInput" placeholder="Password" autocomplete="current-password" autocapitalize="none" autocorrect="off" spellcheck="false">
+                    <button type="button" class="eye-toggle" id="eyeToggle" title="Show / hide password"><svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 19c-6.5 0-10-7-10-7a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c6.5 0 10 7 10 7a18.5 18.5 0 0 1-2.16 3.19M14.12 14.12a3 3 0 1 1-4.24-4.24"/><path d="M1 1l22 22"/></svg></button>
+                </div>
+            </div>
+
+            <label class="save-row">
+                <span class="switch">
+                    <input type="checkbox" id="savePassInput">
+                    <span class="slider"></span>
+                </span>
+                <span class="save-text"><svg class="svg-ic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#34d399" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Save Password</span>
+            </label>
+
+            <button type="submit" class="btn" id="loginBtn">
+                <span class="btn-text">LOGIN</span>
+                <span class="btn-spinner"></span>
+            </button>
+        </form>
+
+        <div class="foot"><svg class="svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Secure Admin Access Only</div>
+    </div>
+
+    <script type="module">
+        import { auth } from "./firebase-config.js";
+        import { signInWithEmailAndPassword } from "firebase/auth";
+
+        const ALLOWED_UID = "ExFZHxlDDDOmtNIwTUWrLpZLyDx1";
+
+        const eyeToggle = document.getElementById("eyeToggle");
+        const passwordInput = document.getElementById("passwordInput");
+        const EYE_SVG = '<svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>';
+        const EYE_OFF_SVG = '<svg class="svg-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 19c-6.5 0-10-7-10-7a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c6.5 0 10 7 10 7a18.5 18.5 0 0 1-2.16 3.19M14.12 14.12a3 3 0 1 1-4.24-4.24"/><path d="M1 1l22 22"/></svg>';
+        eyeToggle.addEventListener("click", function() {
+            const isPass = passwordInput.type === "password";
+            passwordInput.type = isPass ? "text" : "password";
+            eyeToggle.innerHTML = isPass ? EYE_OFF_SVG : EYE_SVG;
+        });
+
+        document.getElementById("loginForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById("emailInput").value.trim();
+            const password = passwordInput.value;
+            const errorMsg = document.getElementById("errorMsg");
+            const loginBtn = document.getElementById("loginBtn");
+
+            errorMsg.style.display = "none";
+            loginBtn.disabled = true;
+            loginBtn.classList.add("loading");
+            loginBtn.querySelector(".btn-text").innerText = "LOGGING IN";
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then(function(userCredential) {
+                    if (userCredential.user.uid !== ALLOWED_UID) {
+                        auth.signOut();
+                        errorMsg.style.display = "flex";
+                        loginBtn.disabled = false;
+                        loginBtn.classList.remove("loading");
+                        loginBtn.querySelector(".btn-text").innerText = "LOGIN";
+                        return;
+                    }
+                    if (document.getElementById("savePassInput").checked) {
+                        localStorage.setItem("adminSavedLogin", JSON.stringify({ email: email, password: password }));
+                    } else {
+                        localStorage.removeItem("adminSavedLogin");
+                    }
+                    sessionStorage.setItem("adminLoggedIn", "true");
+                    localStorage.setItem("adminLoginTime", String(Date.now()));
+                    window.location.href = "dashboard.html";
+                })
+                .catch(function() {
+                    errorMsg.style.display = "flex";
+                    loginBtn.disabled = false;
+                    loginBtn.classList.remove("loading");
+                    loginBtn.querySelector(".btn-text").innerText = "LOGIN";
+                });
+        });
+
+        (function() {
+            const saved = localStorage.getItem("adminSavedLogin");
+            if (saved) {
+                try {
+                    const s = JSON.parse(saved);
+                    if (s.email) document.getElementById("emailInput").value = s.email;
+                    if (s.password) document.getElementById("passwordInput").value = s.password;
+                    document.getElementById("savePassInput").checked = true;
+                } catch (e) { }
+            }
+        })();
+    </script>
+    <script src="admin-ui.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "siteSettings": {
+      ".read": true,
+      ".write": "auth != null && auth.uid === 'ExFZHxlDDDOmtNIwTUWrLpZLyDx1'"
+    },
+    "categories": {
+      ".read": true,
+      ".write": "auth != null && auth.uid === 'ExFZHxlDDDOmtNIwTUWrLpZLyDx1'"
+    },
+    "posts": {
+      ".read": true,
+      ".write": "auth != null && auth.uid === 'ExFZHxlDDDOmtNIwTUWrLpZLyDx1'"
+    },
+    "floatingButtons": {
+      ".read": true,
+      ".write": "auth != null && auth.uid === 'ExFZHxlDDDOmtNIwTUWrLpZLyDx1'"
+    },
+    "appUpdate": {
+      ".read": true,
+      ".write": "auth != null && auth.uid === 'ExFZHxlDDDOmtNIwTUWrLpZLyDx1'"
+    },
+    "ActiveUserKeys": {
+      ".read": "auth != null",
+      ".write": "auth != null && auth.uid === 'ExFZHxlDDDOmtNIwTUWrLpZLyDx1'",
+      "$key": {
+        ".read": true,
+        ".write": "auth != null && auth.uid === 'ExFZHxlDDDOmtNIwTUWrLpZLyDx1'",
+        "boundDeviceId": {
+          ".write": true
+        },
+        "boundDevices": {
+          ".write": true
+        }
+      }
+    },
+    "BannedDevices": {
+      ".read": "auth != null && auth.uid === 'ExFZHxlDDDOmtNIwTUWrLpZLyDx1'",
+      ".write": "auth != null && auth.uid === 'ExFZHxlDDDOmtNIwTUWrLpZLyDx1'"
+    },
+    "users": {
+      ".read": "auth != null && auth.uid === 'ExFZHxlDDDOmtNIwTUWrLpZLyDx1'",
+      ".write": "auth != null && auth.uid === 'ExFZHxlDDDOmtNIwTUWrLpZLyDx1'"
+    }
+  }
+}
