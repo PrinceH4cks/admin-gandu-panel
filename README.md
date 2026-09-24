@@ -100,11 +100,11 @@ Upload the whole folder to any static host and open `index.html`. No build or np
 | `BannedDevices` | admin only | banned device ids |
 | `users` | admin only | registered users / devices |
 | `panelSettings` | admin only | GitHub token + owner + repo (locked UI, synced across devices) |
-| `NOXBHAI123` | admin only (locked UI, synced across devices) |
+| `NOXBHAI123` | admin only  | locked UI, synced across devices |
 
 ## Security Notes
 
-shooterarman116
+  shooterarman116
 - Every page verifies the auth state and the admin UID; sessions expire after 24 hours
 - The GitHub settings card is hidden behind a developer password in the UI — this is a convenience lock, not encryption. The token is still reachable through browser storage, so keep the admin account private
 - `ActiveUserKeys.boundDeviceId` / `boundDevices` are writable without Firebase auth because the Android app binds devices without signing in. Lock this down once the app uses (anonymous) Firebase Auth
