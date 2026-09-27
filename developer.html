@@ -152,7 +152,7 @@
     </div>
 
     <script type="module">
-        import { auth } from "../js/firebase-config.js";
+        import { auth } from "./js/firebase-config.js";
         import { onAuthStateChanged, signOut } from "firebase/auth";
 
         onAuthStateChanged(auth, function(user) {
